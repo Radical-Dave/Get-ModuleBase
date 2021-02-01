@@ -1,6 +1,6 @@
 <#PSScriptInfo
 
-.VERSION 0.1
+.VERSION 0.2
 
 .GUID 01a27130-5e5f-41f7-a699-b6e9546fdede
 
@@ -35,15 +35,10 @@
 Get path to ModuleBase of current script
 In dev, there is extra level for solution that is removed
 #>
-Write-Verbose "$PSScriptRoot started:$pwd"
-#$moduleName = Split-Path (Split-Path $PSScriptRoot -Parent) -Leaf
-
 $moduleName = $MyInvocation.MyCommand.Module.Name
-if(!$moduleName) {$moduleName = Split-Path $PSScriptRoot -Leaf}
-Write-Verbose "moduleName:$moduleName"
+if(!$moduleName) {$moduleName = Split-Path $pwd -Leaf}
 $moduleBase = $MyInvocation.MyCommand.Module.ModuleBase
-if(!$moduleBase) {return $PSScriptRoot}
+if(!$moduleBase) {return $pwd}
 $ndx = $moduleBase.IndexOf($moduleName)
 if($ndx -ne -1) {$moduleBase = $moduleBase.Substring(0, $ndx + $moduleName.Length)}
-Write-Verbose "moduleBase:$moduleBase"
 return $moduleBase
