@@ -1,14 +1,14 @@
 <#PSScriptInfo
 
-.VERSION 0.3
+.VERSION 0.4
 
 .GUID 01a27130-5e5f-41f7-a699-b6e9546fdede
 
-.AUTHOR RadicalDave
+.AUTHOR David Walker, Sitecore Dave, Radical Dave
 
-.COMPANYNAME RadicalDave
+.COMPANYNAME David Walker, Sitecore Dave, Radical Dave
 
-.COPYRIGHT RadicalDave
+.COPYRIGHT David Walker, Sitecore Dave, Radical Dave
 
 .TAGS powershell file io
 
@@ -34,7 +34,11 @@
 .DESCRIPTION
 Get path to ModuleBase of current script
 In dev, there is extra level for solution that is removed
+
+.EXAMPLE
+PS> .\Get-ModuleBase
 #>
+$ErrorActionPreference = 'Continue'
 $moduleName = $MyInvocation.MyCommand.Module.Name
 if(!$moduleName) {
     $moduleName = $pwd #Split-Path $pwd -Leaf
